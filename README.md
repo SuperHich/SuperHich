@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @SuperHich
 - 👀 I’m interested in Mobile developpments specially native Android
-- 🌱 I’m currently learning Dart/Flutter
+- 🌱 I’m currently learning Project Management
 - 💞️ I’m looking to collaborate on every interesting project
 - 📫 How to reach me : simply from my github account :-)
 
