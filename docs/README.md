@@ -13,11 +13,18 @@ docs/
     └── img/              portrait
 ```
 
-## Ajouter le portrait
+## Le portrait
 
-Déposer la photo sous `assets/img/portrait.jpg` — carrée, 400×400 px minimum.
-Aucune modification de code n'est nécessaire : tant que le fichier est absent,
-la page affiche automatiquement `portrait-placeholder.svg`.
+Deux fichiers, deux rôles :
+
+- `assets/img/portrait.png` — la photo d'origine, 800×800, conservée comme source.
+- `assets/img/portrait.jpg` — la version affichée : recadrée sur le visage,
+  réduite à 320×320 et compressée (17 Ko au lieu de 741 Ko).
+
+C'est le `.jpg` que charge la page. Pour changer de photo, remplacer le `.png`
+puis régénérer le `.jpg` avec le même recadrage carré centré sur le visage.
+Tant que le `.jpg` est absent, la page bascule seule sur
+`portrait-placeholder.svg`, donc rien ne casse entre-temps.
 
 ## Remplacer une icône d'application
 
