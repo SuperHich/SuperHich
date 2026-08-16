@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="kidibook">
+  <defs>
+    <linearGradient id="b" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#C79BF0" stop-opacity=".26"/>
+      <stop offset="1" stop-color="#C79BF0" stop-opacity=".07"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="17" fill="#221C2A"/>
+  <rect width="64" height="64" rx="17" fill="url(#b)"/>
+  <rect x=".6" y=".6" width="62.8" height="62.8" rx="16.4" fill="none" stroke="#C79BF0" stroke-opacity=".34"/>
+  <g transform="translate(4.43 5.12) scale(2.2973)" fill="none" stroke="#C79BF0"
+     stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 6.6C10.4 5 8.2 4.4 4.6 4.4v12.4c3.6 0 5.8.6 7.4 2.2 1.6-1.6 3.8-2.2 7.4-2.2V4.4c-3.6 0-5.8.6-7.4 2.2z"/><path d="M12 6.6v12.4"/>
+  </g>
+</svg>

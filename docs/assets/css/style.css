@@ -557,6 +557,21 @@ a { color: var(--ink); text-decoration: none; }
 .card:hover { border-color: var(--hot); transform: translateY(-4px); }
 .card:hover::after { transform: scaleX(1); }
 
+/* Tête de carte : tuile d'application + intitulés, façon fiche de store. */
+.card__head {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.card__tile {
+  width: 54px;
+  height: 54px;
+  border-radius: 15px;
+  flex: none;
+  transition: transform .3s var(--ease);
+}
+.card:hover .card__tile { transform: scale(1.06) rotate(-2deg); }
+
 .card__kicker {
   font-family: var(--mono);
   font-size: 9.5px;
@@ -569,14 +584,14 @@ a { color: var(--ink); text-decoration: none; }
   font-size: 19px;
   font-weight: 700;
   letter-spacing: -.022em;
-  margin: 11px 0 0;
+  margin: 5px 0 0;
   line-height: 1.2;
 }
 .card__desc {
   color: var(--mut);
   font-size: 14.5px;
   line-height: 1.55;
-  margin-top: 9px;
+  margin-top: 16px;
 }
 .card__foot {
   margin-top: auto;

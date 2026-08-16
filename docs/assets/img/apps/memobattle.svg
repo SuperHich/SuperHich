@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="memobattle">
+  <defs>
+    <linearGradient id="b" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#F0B45A" stop-opacity=".26"/>
+      <stop offset="1" stop-color="#F0B45A" stop-opacity=".07"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="17" fill="#221C2A"/>
+  <rect width="64" height="64" rx="17" fill="url(#b)"/>
+  <rect x=".6" y=".6" width="62.8" height="62.8" rx="16.4" fill="none" stroke="#F0B45A" stroke-opacity=".34"/>
+  <g transform="translate(7.71 7.71) scale(2.0238)" fill="none" stroke="#F0B45A"
+     stroke-width="1.09" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.6" y="5.6" width="7.4" height="12.8" rx="2"/><rect x="13" y="5.6" width="7.4" height="12.8" rx="2"/><path d="M7.3 10.4v3.2M5.7 12h3.2"/><path d="M15.1 12h3.2"/>
+  </g>
+</svg>
