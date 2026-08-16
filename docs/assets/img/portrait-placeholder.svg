@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Portrait à venir">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3A3244"/>
+      <stop offset="1" stop-color="#241E2C"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" fill="url(#bg)"/>
+  <path d="M100 116c-34 0-58 21-64 52h128c-6-31-30-52-64-52z" fill="#FF6A3D" opacity=".55"/>
+  <circle cx="100" cy="79" r="32" fill="#FF6A3D" opacity=".55"/>
+</svg>
