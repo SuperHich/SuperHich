@@ -114,7 +114,9 @@
    ========================================================= */
 .strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* auto-fit : trois chiffres remplissent la ligne aussi bien que quatre,
+     sans laisser de cellule vide dans la grille à fond apparent. */
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
@@ -284,6 +286,18 @@
 .fig__scroll { overflow-x: auto; }
 .fig svg { width: 100%; height: auto; display: block; }
 .fig__scroll svg { min-width: 560px; }
+/* Figure d'ouverture : elle précède le bandeau de chiffres, sans titre. */
+.fig--hero { margin: 34px 0 0; }
+
+/* Visuel bitmap dans une figure : il occupe toute la largeur du cadre et
+   garde ses coins arrondis, sans jamais dépasser la colonne de lecture. */
+.fig__img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-sm);
+  background: var(--bg-deep);
+}
+
 .fig__note {
   font-family: var(--mono);
   font-size: 11px;
@@ -495,6 +509,20 @@
 }
 .post:hover .post__title { color: var(--ink); }
 .post__desc { color: var(--mut); font-size: 14.5px; line-height: 1.55; margin-top: 12px; max-width: 62ch; }
+
+/* Le site est en français : un article rédigé dans une autre langue le dit. */
+.post__flag {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: var(--glow);
+  border: 1px solid var(--glow);
+  border-radius: 99px;
+  padding: 2px 7px;
+  margin-left: 8px;
+  vertical-align: 1px;
+}
 .post__go {
   display: inline-flex;
   align-items: center;
