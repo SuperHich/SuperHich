@@ -68,9 +68,9 @@ Pour publier un nouvel article :
    Les listes sont antichronologiques : le plus récent en premier.
 
 Un article rédigé dans une autre langue que le français porte le `lang` qui
-convient sur `<html>`, un `hreflang` sur son lien de liste, et un repère
-`<span class="post__flag">EN</span>` dans son titre de liste. Le résumé de la
-liste, lui, reste en français : c'est la langue du site.
+convient sur `<html>`, un `hreflang` sur son lien de liste, et un `lang` sur
+les éléments de sa ligne de liste. Titre, date et résumé restent dans la
+langue de l'article : c'est le texte lui-même qui l'annonce, sans pastille.
 
 ## Les images d'article
 
