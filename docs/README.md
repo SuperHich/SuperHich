@@ -6,11 +6,15 @@ Ouvrir `index.html` dans un navigateur suffit.
 ```
 docs/
 ├── index.html
+├── articles/
+│   ├── index.html                    liste des articles
+│   └── le-code-reecrit-par-lia.html  un article
 └── assets/
-    ├── css/style.css
+    ├── css/style.css     socle du site
+    ├── css/article.css   composants propres aux articles
     ├── js/main.js
     ├── fonts/            Roboto Flex + Roboto Mono (sous-ensemble latin, WOFF2)
-    └── img/              portrait
+    └── img/              portrait, tuiles d'applications, tuiles d'articles
 ```
 
 ## Le portrait
@@ -43,6 +47,41 @@ correspondante dans `index.html` :
 Les icônes d'applications de Oodrive, SNCF, Crédit Agricole et BNP Paribas
 sont des marques déposées de leurs éditeurs. Les afficher pour illustrer une
 mission est un usage courant en portfolio, mais cela reste ton appel.
+
+## Ajouter un article
+
+Les articles vivent dans `docs/articles/` et partagent le design du portfolio :
+`style.css` fournit la navigation, les cartes et le pied de page, `article.css`
+n'ajoute que ce qui leur est propre (en-tête, figures, encadrés, sources).
+Aucune dépendance, aucune étape de build — comme le reste du site.
+
+Pour publier un nouvel article :
+
+1. Dupliquer `articles/le-code-reecrit-par-lia.html` sous un nom en minuscules
+   séparé par des tirets, puis remplacer le contenu, le `<title>` et les
+   métadonnées `og:` en haut de page.
+2. Déposer une tuile 64×64 dans `assets/img/articles/`, sur le même modèle que
+   les tuiles d'applications (fond `#221C2A`, glyphe au trait).
+3. Ajouter une ligne `.post` dans `articles/index.html`, et, si l'article mérite
+   la page d'accueil, la même ligne dans la section `#articles` de `index.html`
+   (les chemins y sont relatifs à la racine : `articles/mon-article.html`).
+
+Chaque section d'article porte sa couleur d'accent via une variable en ligne :
+
+```html
+<section class="pillar" style="--accent: var(--violet); --accent-dim: var(--violet-dim);">
+```
+
+Quatre teintes sont prévues dans `article.css` — `--violet`, `--amber`, `--hot`
+et `--sage` — chacune avec sa version `-dim` pour les fonds d'encadrés. La
+couleur circule seule dans le numéro de section, la barre, les encadrés et les
+figures.
+
+Les figures (diagrammes, chronologie, anneau, barres) sont du SVG écrit à la
+main dans la page, coloré avec les mêmes variables : rien à régénérer si la
+palette du site change. Une figure large est enveloppée dans un
+`<div class="fig__scroll">` pour défiler seule sur mobile plutôt que d'élargir
+la page.
 
 ## Publier sur GitHub Pages
 

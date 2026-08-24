@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="ia-dev">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#FF6A3D" stop-opacity=".26"/>
+      <stop offset="1" stop-color="#FF6A3D" stop-opacity=".07"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="17" fill="#221C2A"/>
+  <rect width="64" height="64" rx="17" fill="url(#a)"/>
+  <rect x=".6" y=".6" width="62.8" height="62.8" rx="16.4" fill="none" stroke="#FF6A3D" stroke-opacity=".34"/>
+  <g transform="translate(6.50 6.07) scale(2.1250)" fill="none" stroke="#FF6A3D"
+     stroke-width="1.04" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8.6 7.4 5.1 11.2 8.6 15"/>
+    <path d="M15.4 7.4 18.9 11.2 15.4 15"/>
+    <path d="M13 5.6 11 17.4"/>
+  </g>
+</svg>
