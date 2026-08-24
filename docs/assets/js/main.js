@@ -47,7 +47,12 @@
   }
 
   /* ---- lien de nav actif selon la section visible ---- */
-  var links = Array.prototype.slice.call(document.querySelectorAll(".nav__links a"));
+  /* Seuls les liens d'ancre alimentent le sommaire actif : sur les pages
+     d'article, la navigation pointe vers "../index.html#..." et "./", qui ne
+     sont pas des sélecteurs valides. */
+  var links = Array.prototype.slice.call(
+    document.querySelectorAll('.nav__links a[href^="#"]')
+  );
   var sections = links
     .map(function (a) { return document.querySelector(a.getAttribute("href")); })
     .filter(Boolean);

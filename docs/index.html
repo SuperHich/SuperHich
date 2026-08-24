@@ -17,6 +17,7 @@
 <link rel="preload" href="assets/fonts/roboto-flex.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/roboto-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/article.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131015'/><text x='16' y='23' font-family='sans-serif' font-size='17' font-weight='bold' fill='%23FF6A3D' text-anchor='middle'>H</text></svg>">
 </head>
 <body>
@@ -32,6 +33,7 @@
       <a href="#apps">Applications</a>
       <a href="#labo">Labo</a>
       <a href="#expertise">Expertise</a>
+      <a href="#articles">Articles</a>
     </nav>
     <a class="btn btn--hot" href="#contact">Me contacter</a>
   </div>
@@ -543,8 +545,47 @@
   </div>
 </section>
 
+<!-- ===================== ARTICLES ===================== -->
+<section class="band" id="articles">
+  <div class="shell">
+    <div class="head reveal">
+      <p class="head__eyebrow">Articles</p>
+      <h2 class="head__title">Ce que j'observe, mis par écrit</h2>
+      <p class="head__note">
+        Des analyses appuyées sur des chiffres vérifiables : outillage des équipes
+        techniques, architecture mobile, et ce que l'IA change réellement au métier.
+      </p>
+    </div>
+
+    <div class="posts">
+
+      <a class="post reveal" href="articles/le-code-reecrit-par-lia.html">
+        <img class="post__tile" src="assets/img/articles/ia-dev.svg" alt="" width="64" height="64">
+        <div>
+          <p class="card__kicker">24 août 2026 · Technologie · 12 min</p>
+          <h3 class="post__title">Le code, réécrit par l'IA</h3>
+          <p class="post__desc">
+            Méthode de travail, gains de vitesse réels, dépendance aux fournisseurs, bilan
+            chiffré et nouveaux métiers : ce que disent vraiment DORA, Stack Overflow, METR
+            et DX du développement assisté par IA.
+          </p>
+          <ul class="card__tags">
+            <li>IA</li><li>Productivité</li><li>DORA</li><li>METR</li>
+          </ul>
+        </div>
+        <span class="post__go">Lire l'article →</span>
+      </a>
+
+    </div>
+
+    <p class="reveal" style="margin-top:26px">
+      <a class="link link--mut" href="articles/">Tous les articles →</a>
+    </p>
+  </div>
+</section>
+
 <!-- ===================== CONTACT ===================== -->
-<section class="band" id="contact">
+<section class="band band--alt" id="contact">
   <div class="shell contact reveal">
     <h2 class="contact__title">Un projet Android <em>à faire décoller ?</em></h2>
     <p class="contact__note">

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le code, réécrit par l'IA — Hichem Laroussi</title>
+<meta name="description" content="Près de quatre ans après ChatGPT, ce que les données disent réellement du basculement de l'IA générative dans le développement logiciel : méthode, vitesse, dépendance, bilan, métiers.">
+<meta name="author" content="Hichem Laroussi">
+<meta name="theme-color" content="#131015">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Le code, réécrit par l'IA">
+<meta property="og:description" content="Méthode, vitesse, dépendance, bilan, métiers : ce que les études — DORA, Stack Overflow, METR, DX — disent du développement assisté par IA.">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="../assets/fonts/roboto-flex.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/roboto-mono.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/article.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131015'/><text x='16' y='23' font-family='sans-serif' font-size='17' font-weight='bold' fill='%23FF6A3D' text-anchor='middle'>H</text></svg>">
+</head>
+<body>
+
+<a class="skip" href="#main">Aller au contenu</a>
+<div class="aura" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="shell nav__in">
+    <a class="nav__logo" href="../index.html#top">hichem<em>.dev</em></a>
+    <nav class="nav__links" aria-label="Navigation principale">
+      <a href="../index.html#parcours">Parcours</a>
+      <a href="../index.html#apps">Applications</a>
+      <a href="../index.html#labo">Labo</a>
+      <a href="./" class="is-active">Articles</a>
+    </nav>
+    <a class="btn btn--hot" href="../index.html#contact">Me contacter</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===================== EN-TÊTE ===================== -->
+<article>
+<header class="art-hero" id="top">
+  <div class="shell">
+    <a class="art-back" href="./">← Tous les articles</a>
+
+    <p class="art-eyebrow">Article · Technologie</p>
+    <h1 class="art-title">Le code, <em>réécrit par l'IA</em></h1>
+    <p class="art-lede">
+      Près de quatre ans après ChatGPT, l'intelligence artificielle générative est passée
+      d'une curiosité de labo à une infrastructure de travail quotidienne pour l'écrasante
+      majorité des équipes techniques. Voici ce que les données — jusqu'aux tout derniers
+      chiffres du premier trimestre 2026 — disent réellement de ce basculement : méthode de
+      travail, gains de vitesse, dépendance, compétences, au-delà du discours marketing.
+    </p>
+
+    <p class="art-meta">
+      <span>Hichem Laroussi</span><i aria-hidden="true"></i>
+      <time datetime="2026-08-24">24 août 2026</time><i aria-hidden="true"></i>
+      <span>12 min de lecture</span>
+    </p>
+
+    <svg class="pulse" viewBox="0 0 900 60" preserveAspectRatio="none" aria-hidden="true">
+      <polyline points="0,30 90,30 105,10 120,50 135,30 260,30 275,14 292,46 308,30 430,30 448,4 468,54 486,30 600,30 616,16 634,44 650,30 780,30 796,8 814,52 832,30 900,30"
+        fill="none" stroke="var(--hot)" stroke-width="1.6" opacity=".65"/>
+    </svg>
+
+    <div class="strip">
+      <div class="strip__cell">
+        <b class="strip__num">93 %</b>
+        <span class="strip__lbl">des développeurs utilisent l'IA au moins une fois par mois</span>
+        <span class="strip__src">DX · T1 2026</span>
+      </div>
+      <div class="strip__cell">
+        <b class="strip__num">84 %</b>
+        <span class="strip__lbl">utilisent ou prévoient d'utiliser des outils IA</span>
+        <span class="strip__src">Stack Overflow · 2025</span>
+      </div>
+      <div class="strip__cell">
+        <b class="strip__num">46 %</b>
+        <span class="strip__lbl">se méfient de la fiabilité du code généré</span>
+        <span class="strip__src">Stack Overflow · 2025</span>
+      </div>
+      <div class="strip__cell">
+        <b class="strip__num">+143 %</b>
+        <span class="strip__lbl">de croissance des offres « AI Engineer » sur un an</span>
+        <span class="strip__src">LinkedIn · Jobs on the Rise 2026</span>
+      </div>
+    </div>
+
+    <nav class="toc" aria-label="Sommaire">
+      <h2>Sommaire</h2>
+      <ol>
+        <li><a href="#methode">Le changement de façon de développer</a></li>
+        <li><a href="#vitesse">La rapidité gagnée avec l'IA</a></li>
+        <li><a href="#dependance">Le risque de dépendance forte</a></li>
+        <li><a href="#bilan">Avantages et inconvénients</a></li>
+        <li><a href="#metiers">Les nouveaux métiers créés</a></li>
+      </ol>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== CORPS ===================== -->
+<div class="art">
+  <div class="shell">
+
+    <div class="intro">
+      <p>
+        Depuis l'arrivée de ChatGPT fin 2022 et la généralisation des assistants de code comme
+        GitHub Copilot, puis des agents autonomes comme Claude Code ou Cursor,
+        <strong>le développement logiciel a changé de nature plus vite qu'à n'importe quel moment
+        depuis l'arrivée du cloud</strong>. Mais les études sérieuses — DORA, Stack Overflow, METR,
+        GitHub Research — dessinent un tableau bien plus nuancé que le simple récit d'une
+        productivité qui explose partout. Cinq questions structurent ce constat : comment on
+        développe, à quelle vitesse, à quel prix en cas de dépendance, avec quels bénéfices
+        et quels risques, et pour quels nouveaux métiers.
+      </p>
+    </div>
+
+    <!-- ---------- 01 · MÉTHODE ---------- -->
+    <section class="pillar" id="methode" style="--accent: var(--violet); --accent-dim: var(--violet-dim);">
+      <p class="pillar__no">01 — Méthode</p>
+      <div class="pillar__bar" aria-hidden="true"></div>
+      <h2>Le changement de façon de développer</h2>
+      <p class="pillar__lede">
+        L'IA n'a pas seulement ajouté un outil à la boîte à outils du développeur : elle a
+        déplacé le centre de gravité du travail, de l'écriture du code vers sa spécification
+        et sa validation.
+      </p>
+
+      <p>
+        Le mouvement s'est fait en trois vagues. D'abord l'<strong>autocomplétion intelligente</strong>
+        (GitHub Copilot, 2021) qui suggère des lignes ou des fonctions pendant que le développeur
+        écrit. Ensuite les <strong>assistants conversationnels</strong>, qui permettent de décrire un
+        besoin en langage naturel et d'obtenir un bloc de code à intégrer. Enfin les
+        <strong>agents autonomes</strong> — Claude Code, Cursor, Codex — capables d'enchaîner plusieurs
+        étapes seuls : lire une base de code, écrire, exécuter des tests, corriger, ouvrir une
+        pull request. Selon le rapport DORA 2025, la dépendance à ces outils est déjà profonde :
+        <strong>65 % des professionnels qui utilisent l'IA au travail se disent fortement dépendants
+        de ces outils</strong> au quotidien.
+      </p>
+
+      <figure class="fig">
+        <p class="fig__title">Diagramme — où va le temps du développeur</p>
+        <div class="fig__scroll">
+          <svg viewBox="0 0 860 250" role="img" aria-label="Comparaison de la boucle de développement classique et de la boucle assistée par IA : le temps d'écriture se réduit, le temps de validation devient le goulot d'étranglement.">
+            <defs>
+              <marker id="tip" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="var(--mut-dim)"/>
+              </marker>
+            </defs>
+
+            <text x="0" y="14" class="svg-label">Boucle classique</text>
+            <g transform="translate(0,44)">
+              <rect x="0" y="0" width="150" height="46" rx="10" fill="var(--violet-dim)" stroke="var(--violet)" stroke-width="1"/>
+              <text x="75" y="21" text-anchor="middle" class="svg-label">Spécifier</text>
+              <text x="75" y="36" text-anchor="middle" class="svg-sub">le besoin</text>
+
+              <path d="M156,23 L178,23" stroke="var(--mut-dim)" stroke-width="1.3" marker-end="url(#tip)"/>
+
+              <rect x="184" y="-6" width="218" height="58" rx="10" fill="var(--violet-dim)" stroke="var(--violet)" stroke-width="1.6"/>
+              <text x="293" y="15" text-anchor="middle" class="svg-label">Écrire le code</text>
+              <text x="293" y="31" text-anchor="middle" class="svg-sub">ligne à ligne</text>
+              <text x="293" y="45" text-anchor="middle" class="svg-sub">— le plus long —</text>
+
+              <path d="M408,23 L430,23" stroke="var(--mut-dim)" stroke-width="1.3" marker-end="url(#tip)"/>
+
+              <rect x="436" y="0" width="148" height="46" rx="10" fill="var(--violet-dim)" stroke="var(--violet)" stroke-width="1"/>
+              <text x="510" y="21" text-anchor="middle" class="svg-label">Tester</text>
+              <text x="510" y="36" text-anchor="middle" class="svg-sub">compiler</text>
+
+              <path d="M590,23 L612,23" stroke="var(--mut-dim)" stroke-width="1.3" marker-end="url(#tip)"/>
+
+              <rect x="618" y="0" width="148" height="46" rx="10" fill="var(--violet-dim)" stroke="var(--violet)" stroke-width="1"/>
+              <text x="692" y="21" text-anchor="middle" class="svg-label">Déboguer</text>
+              <text x="692" y="36" text-anchor="middle" class="svg-sub">itérer</text>
+            </g>
+
+            <text x="0" y="142" class="svg-label">Boucle assistée par IA</text>
+            <g transform="translate(0,172)">
+              <rect x="0" y="0" width="150" height="46" rx="10" fill="var(--violet-dim)" stroke="var(--violet)" stroke-width="1"/>
+              <text x="75" y="21" text-anchor="middle" class="svg-label">Spécifier</text>
+              <text x="75" y="36" text-anchor="middle" class="svg-sub">l'intention</text>
+
+              <path d="M156,23 L178,23" stroke="var(--mut-dim)" stroke-width="1.3" marker-end="url(#tip)"/>
+
+              <rect x="184" y="4" width="148" height="38" rx="10" fill="var(--violet-dim)" stroke="var(--violet)" stroke-width="1"/>
+              <text x="258" y="21" text-anchor="middle" class="svg-label">L'IA génère</text>
+              <text x="258" y="35" text-anchor="middle" class="svg-sub">le code</text>
+
+              <path d="M338,23 L360,23" stroke="var(--mut-dim)" stroke-width="1.3" marker-end="url(#tip)"/>
+
+              <rect x="366" y="-6" width="258" height="58" rx="10" fill="var(--rust-dim)" stroke="var(--hot)" stroke-width="1.6"/>
+              <text x="495" y="15" text-anchor="middle" class="svg-label">Valider &amp; corriger</text>
+              <text x="495" y="31" text-anchor="middle" class="svg-sub">relire, tester, réécrire</text>
+              <text x="495" y="45" text-anchor="middle" class="svg-sub">— le nouveau goulot —</text>
+
+              <path d="M630,23 L652,23" stroke="var(--mut-dim)" stroke-width="1.3" marker-end="url(#tip)"/>
+
+              <rect x="658" y="0" width="148" height="46" rx="10" fill="var(--violet-dim)" stroke="var(--violet)" stroke-width="1"/>
+              <text x="732" y="21" text-anchor="middle" class="svg-label">Revue</text>
+              <text x="732" y="36" text-anchor="middle" class="svg-sub">de code</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption class="fig__note">
+          Le temps de rédaction se réduit ; le temps de relecture et de validation augmente
+          et devient le nouveau point de friction.
+        </figcaption>
+      </figure>
+
+      <p>
+        Ce déplacement du travail redessine même les rôles. Selon le cabinet DX, qui mesure la
+        productivité de plus de 400 organisations, les managers d'ingénierie qui utilisent l'IA
+        quotidiennement livraient deux fois plus de code que la moyenne fin 2025 ; au premier
+        trimestre 2026, cet écart a encore doublé — ils livrent désormais
+        <strong>quatre fois plus de code qu'il y a six mois</strong>. La frontière entre encadrement
+        et production de code, longtemps considérée comme étanche, redevient poreuse.
+      </p>
+
+      <p>
+        Cette bascule se lit aussi dans les usages : le « vibe coding » — laisser l'IA piloter
+        l'essentiel de l'implémentation à partir d'une simple description — reste minoritaire.
+        <strong>72 % des développeurs professionnels déclarent que ce n'est pas leur façon de
+        travailler</strong>, signe que la relecture humaine reste la norme plutôt que l'exception.
+        Du côté des agents autonomes, l'adoption progresse mais reste récente : parmi ceux qui
+        les utilisent déjà, environ 70 % estiment qu'ils réduisent le temps passé sur certaines
+        tâches et 69 % qu'ils augmentent leur productivité — mais seuls 17 % constatent une
+        amélioration de la collaboration en équipe, largement en retrait par rapport aux autres
+        bénéfices perçus.
+      </p>
+    </section>
+
+    <hr class="rule" style="--from: var(--violet); --to: var(--amber);">
+
+    <!-- ---------- 02 · VITESSE ---------- -->
+    <section class="pillar" id="vitesse" style="--accent: var(--amber); --accent-dim: var(--amber-dim);">
+      <p class="pillar__no">02 — Vitesse</p>
+      <div class="pillar__bar" aria-hidden="true"></div>
+      <h2>La rapidité gagnée avec l'IA</h2>
+      <p class="pillar__lede">
+        Les gains de vitesse sont réels et mesurés par plusieurs études contrôlées — mais leur
+        ampleur dépend énormément du contexte, de l'expérience du développeur et de la
+        complexité du code touché.
+      </p>
+
+      <figure class="fig">
+        <p class="fig__title">Gains de vitesse mesurés sur des tâches comparables</p>
+        <div class="bars">
+          <div class="bar">
+            <span class="bar__lbl">GitHub · exp. contrôlée</span>
+            <span class="bar__track"><span class="bar__fill" style="width:86%;background:var(--hot);">+55,8 %</span></span>
+          </div>
+          <div class="bar">
+            <span class="bar__lbl">ANZ Bank · 6 semaines</span>
+            <span class="bar__track"><span class="bar__fill" style="width:65%;background:#F5934F;">+42,4 %</span></span>
+          </div>
+          <div class="bar">
+            <span class="bar__lbl">Google · 96 ingénieurs</span>
+            <span class="bar__track"><span class="bar__fill" style="width:34%;background:var(--glow);">+21 %</span></span>
+          </div>
+        </div>
+        <figcaption class="fig__note">
+          Réduction du temps nécessaire pour accomplir une tâche de code, avec vs sans
+          assistant IA — études contrôlées.
+        </figcaption>
+      </figure>
+
+      <p>
+        Dans l'expérience contrôlée menée par des chercheurs de Microsoft et du MIT, des
+        développeurs chargés d'implémenter un serveur HTTP en JavaScript ont terminé
+        <strong>55,8 % plus vite</strong> avec GitHub Copilot que sans. Chez ANZ Bank, une
+        expérience de six semaines a mesuré un gain moyen de 42 %, plus marqué chez les
+        développeurs débutants (+52 %) que chez les plus expérimentés (+40 %). Chez Google,
+        une étude menée avec 96 ingénieurs à temps plein sur une tâche de code d'entreprise
+        complexe a mesuré un gain plus modeste de 21 %. Sur le plan des équipes, un déploiement
+        documenté par Harness a permis une hausse de 10,6 % du nombre de pull requests traitées
+        et une réduction de 3,5 heures du temps de cycle.
+      </p>
+
+      <aside class="callout">
+        <b class="callout__tag">Contrepoint — étude METR, juillet 2025</b>
+        Sur des bases de code matures et familières, l'effet peut s'inverser. Un essai
+        randomisé mené par METR auprès de 16 développeurs open source expérimentés, sur
+        246 tâches réelles, a mesuré que l'usage d'outils IA
+        <strong>allongeait le temps de réalisation de 19 %</strong> — alors que ces mêmes
+        développeurs, une fois la tâche terminée, estimaient avoir gagné 20 % de temps.
+        L'écart entre vitesse perçue et vitesse réelle est l'un des résultats les plus
+        solides de cette étude.
+      </aside>
+
+      <p>
+        Les données les plus fraîches, publiées par le cabinet DX début 2026 à partir de la
+        télémétrie de plus de 400 entreprises, confirment la tendance tout en la nuançant.
+        Au quatrième trimestre 2025, les développeurs économisaient en moyenne
+        <strong>3,6 heures par semaine</strong> grâce à l'IA — près du double d'un an plus tôt.
+        Mais surtout, trois mois plus tard, la répartition de ce gain a basculé : alors que ce
+        sont les ingénieurs les plus expérimentés qui économisaient le plus de temps fin 2025,
+        ce sont désormais les <strong>développeurs juniors qui économisent le plus</strong>
+        (4,9 heures/semaine, contre 4,8 heures pour les profils seniors). Autre repère utile
+        pour tempérer certaines annonces marketing : seuls <strong>22 % du code fusionné</strong>
+        serait aujourd'hui réellement rédigé par l'IA — loin des chiffres à 40-50 % parfois
+        avancés.
+      </p>
+
+      <p>
+        Le message que porte le rapport DORA 2025 est cohérent avec ces résultats contrastés :
+        pour la première fois, l'adoption de l'IA est statistiquement liée à un débit de
+        livraison plus élevé — mais cette même adoption est aussi corrélée à davantage d'échecs
+        de changement, de retouches et de délais de résolution d'incidents. L'IA accélère
+        l'écriture, pas nécessairement la fiabilité qui suit.
+      </p>
+    </section>
+
+    <hr class="rule" style="--from: var(--amber); --to: var(--hot);">
+
+    <!-- ---------- 03 · DÉPENDANCE ---------- -->
+    <section class="pillar" id="dependance" style="--accent: var(--hot); --accent-dim: var(--rust-dim);">
+      <p class="pillar__no">03 — Dépendance</p>
+      <div class="pillar__bar" aria-hidden="true"></div>
+      <h2>Le risque de dépendance forte aux outils IA</h2>
+      <p class="pillar__lede">
+        Imaginons que l'IA s'arrête. Il ne s'agit pas d'une hypothèse d'école : c'est déjà
+        arrivé, à plusieurs reprises, et à chaque fois cela a mis au jour la même fragilité
+        structurelle.
+      </p>
+
+      <figure class="fig">
+        <p class="fig__title">Chronologie — principales interruptions de service (2023–2026)</p>
+        <div class="fig__scroll">
+          <svg viewBox="0 0 860 150" role="img" aria-label="Chronologie des principales pannes des services d'IA : novembre 2023 attaque DDoS, décembre 2024 panne Azure de neuf heures, juin 2025 panne globale de plus de douze heures, novembre 2025 API et fichiers pendant cinq heures, 20 avril 2026 panne simultanée de ChatGPT, Claude, Gemini et Copilot pendant environ 90 minutes.">
+            <polyline points="20,50 110,50 122,34 134,66 146,50 250,50 262,31 276,69 290,50 400,50 412,22 426,78 440,50 550,50 562,36 576,64 590,50 690,50 700,27 712,73 724,50 800,50 810,31 822,69 840,50"
+              fill="none" stroke="var(--hot)" stroke-width="1.6"/>
+            <g class="svg-tick" text-anchor="middle">
+              <circle cx="128" cy="50" r="4" fill="var(--hot)"/>
+              <text x="128" y="106" fill="var(--mut)">NOV. 2023</text>
+              <text x="128" y="120">Attaque DDoS</text>
+
+              <circle cx="268" cy="50" r="4" fill="var(--hot)"/>
+              <text x="268" y="106" fill="var(--mut)">DÉC. 2024</text>
+              <text x="268" y="120">Panne Azure · 9 h</text>
+
+              <circle cx="418" cy="50" r="4" fill="var(--hot)"/>
+              <text x="418" y="106" fill="var(--mut)">JUIN 2025</text>
+              <text x="418" y="120">Panne globale · 12 h+</text>
+
+              <circle cx="568" cy="50" r="4" fill="var(--hot)"/>
+              <text x="568" y="106" fill="var(--mut)">NOV. 2025</text>
+              <text x="568" y="120">API &amp; fichiers · 5 h</text>
+
+              <circle cx="706" cy="50" r="5.5" fill="var(--glow)"/>
+              <text x="706" y="106" fill="var(--glow)">20 AVR. 2026</text>
+              <text x="706" y="120">ChatGPT + Claude +</text>
+              <text x="706" y="132">Gemini + Copilot · ~90 min</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption class="fig__note">
+          Sources : ALM Corp, Storyboard18, Ayi Nedjimi Consultants — historique des
+          interruptions des principaux services d'IA.
+        </figcaption>
+      </figure>
+
+      <p>
+        La panne du 26 décembre 2024 est particulièrement révélatrice : elle a duré environ neuf
+        heures et a eu pour seule cause une défaillance électrique dans un centre de données de
+        Microsoft Azure, dont dépend l'infrastructure d'OpenAI. Les équipes d'OpenAI elles-mêmes
+        n'avaient <strong>aucun levier direct</strong> pour l'écourter — elles ont dû attendre
+        qu'Azure résolve l'incident. C'est l'illustration parfaite d'un point de défaillance
+        unique : quand une entreprise fait reposer une partie de son activité sur un fournisseur
+        d'IA, elle hérite aussi de toute la chaîne de dépendances de ce fournisseur.
+      </p>
+
+      <p>
+        Plus révélateur encore : le 20 avril 2026, ChatGPT, Claude, Gemini et Microsoft Copilot
+        sont tombés en panne <strong>quasi simultanément</strong>, à partir de 15 h 05 UTC, avant
+        qu'un retour à la normale ne s'amorce environ 90 minutes plus tard. Rien qu'au
+        Royaume-Uni, plus de 8 700 signalements d'incident ont été recensés pour ChatGPT, avec
+        des pics de signalement multipliés respectivement par 28 et par 99 pour Claude et
+        Copilot. L'origine exacte reste débattue, mais l'hypothèse la plus documentée pointe vers
+        une dépendance d'infrastructure partagée entre plusieurs fournisseurs. Ce type d'incident
+        change la nature du risque : la parade classique — « répartir ses usages entre plusieurs
+        IA » — ne protège plus si ces IA concurrentes s'appuient, en coulisses, sur les mêmes
+        briques d'infrastructure.
+      </p>
+
+      <aside class="callout">
+        <b class="callout__tag">L'ordre de grandeur</b>
+        Même avec une disponibilité annoncée proche de 99 %, cela représente pour une entreprise
+        qui traite l'IA comme une brique critique <strong>environ 87 heures d'indisponibilité
+        cumulée par an</strong> — largement de quoi perturber une chaîne de production logicielle
+        si aucun plan de repli n'existe.
+      </aside>
+
+      <p>
+        Concrètement, quand l'IA s'arrête : les agents en cours de tâche s'interrompent au milieu
+        d'une modification, l'autocomplétion disparaît, les pull requests générées
+        automatiquement restent bloquées en attente de revue, et les équipes les plus dépendantes
+        reviennent — parfois maladroitement, faute d'entraînement récent — à une écriture de code
+        entièrement manuelle.
+      </p>
+
+      <p>
+        Le vrai risque n'est donc pas seulement technique, il est aussi humain. En février 2026,
+        METR — l'organisme derrière l'étude sur le ralentissement de 19 % — a dû revoir le
+        protocole de son étude de suivi : trop de développeurs sollicités refusaient désormais de
+        participer s'ils devaient travailler sans IA, biaisant la mesure. Ce détail
+        méthodologique en dit long : la dépendance n'est plus seulement organisationnelle, elle
+        est devenue individuelle et comportementale.
+      </p>
+
+      <p>
+        Les recommandations qui reviennent chez les analystes de continuité d'activité se sont
+        affinées avec la multiplication des incidents de 2026 : prévoir un
+        <strong>basculement automatique entre plusieurs fournisseurs</strong> (Claude, GPT,
+        Gemini) pour les usages critiques, conserver des procédures de repli manuelles
+        documentées, et maintenir dans l'équipe des compétences de développement « sans filet »
+        suffisamment fraîches pour absorber une coupure — sachant que la panne du 20 avril 2026 a
+        montré que même cette parade multi-fournisseurs a ses limites en cas de dépendance
+        d'infrastructure partagée.
+      </p>
+    </section>
+
+    <hr class="rule" style="--from: var(--hot); --to: var(--sage);">
+
+    <!-- ---------- 04 · BILAN ---------- -->
+    <section class="pillar" id="bilan" style="--accent: var(--sage); --accent-dim: var(--sage-dim);">
+      <p class="pillar__no">04 — Bilan</p>
+      <div class="pillar__bar" aria-hidden="true"></div>
+      <h2>Avantages et inconvénients</h2>
+      <p class="pillar__lede">
+        Le rapport DORA 2025 résume bien la tension centrale : l'IA n'est pas un correctif
+        universel, c'est un amplificateur. Elle rend les équipes déjà solides plus efficaces,
+        et rend les équipes fragiles plus instables.
+      </p>
+
+      <div class="duo">
+        <div class="duo__box duo__box--up">
+          <h3>Avantages observés</h3>
+          <ul>
+            <li><strong>Vitesse d'exécution</strong> sur des tâches bien cadrées — jusqu'à +56 % en environnement contrôlé.</li>
+            <li><strong>Charge mentale réduite</strong> : 87 % des utilisateurs de Copilot rapportent moins d'effort cognitif sur les tâches répétitives.</li>
+            <li><strong>Satisfaction au travail</strong> : 74 % se disent capables de se concentrer sur un travail plus intéressant.</li>
+            <li><strong>Accès facilité</strong> au métier pour les profils débutants ou en reconversion, avec des gains plus marqués chez les novices.</li>
+            <li><strong>Débit de livraison</strong> en hausse pour les équipes ayant des bases techniques déjà solides.</li>
+            <li><strong>Prime salariale</strong> : les compétences IA valent en moyenne 56 % de salaire en plus que des postes comparables sans IA (PwC, 2025).</li>
+          </ul>
+        </div>
+        <div class="duo__box duo__box--down">
+          <h3>Inconvénients observés</h3>
+          <ul>
+            <li><strong>Confiance en baisse</strong> : la méfiance envers la précision du code généré dépasse désormais la confiance.</li>
+            <li><strong>Débogage plus long</strong> : 45 % des développeurs jugent que corriger du code généré par IA prend plus de temps que l'écrire soi-même.</li>
+            <li><strong>Instabilité accrue</strong> : plus d'échecs de changement, de retouches et de délais de résolution, selon DORA.</li>
+            <li><strong>Qualité volatile</strong> : certaines entreprises voient leur taux d'échec de changement bondir de 2 points, soit 50 % de défauts en plus (DX, T1 2026).</li>
+            <li><strong>Dépendance structurelle</strong> à un nombre restreint de fournisseurs, avec un risque de panne en cascade — illustré en avril 2026.</li>
+          </ul>
+        </div>
+      </div>
+
+      <figure class="fig">
+        <p class="fig__title">Confiance dans la précision des sorties de l'IA (2025)</p>
+        <div class="donut">
+          <svg viewBox="0 0 200 200" role="img" aria-label="Répartition de la confiance des développeurs : 46 % de méfiance, 33 % de confiance, 21 % neutres.">
+            <circle cx="100" cy="100" r="70" fill="none" stroke="var(--bg-deep)" stroke-width="26"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="var(--hot)" stroke-width="26"
+              stroke-dasharray="202.3 237.5" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="var(--sage)" stroke-width="26"
+              stroke-dasharray="145.1 294.7" stroke-dashoffset="-202.3" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="var(--glow)" stroke-width="26"
+              stroke-dasharray="92.4 347.5" stroke-dashoffset="-347.5" transform="rotate(-90 100 100)"/>
+            <text x="100" y="97" text-anchor="middle" font-size="27" font-weight="500" fill="var(--ink)">46 %</text>
+            <text x="100" y="117" text-anchor="middle" font-size="10" letter-spacing="1.4" fill="var(--mut-dim)">MÉFIANCE</text>
+          </svg>
+        </div>
+        <div class="legend">
+          <span><i style="background:var(--hot)" aria-hidden="true"></i>Méfiance — 46 %</span>
+          <span><i style="background:var(--sage)" aria-hidden="true"></i>Confiance — 33 %</span>
+          <span><i style="background:var(--glow)" aria-hidden="true"></i>Neutre — 21 %</span>
+        </div>
+        <figcaption class="fig__note">
+          Base : plus de 49 000 développeurs, 177 pays. Source : Stack Overflow Developer
+          Survey 2025 (édition la plus récente publiée ; l'enquête 2026 est en cours de collecte).
+        </figcaption>
+      </figure>
+
+      <p>
+        Ce paradoxe — usage en hausse, confiance en baisse — est la donnée la plus marquante de
+        l'enquête Stack Overflow 2025 : l'adoption est passée de 76 % à 84 % en un an, tandis que
+        le sentiment favorable global reculait de plus de 70 % à 60 %. Les développeurs les plus
+        expérimentés sont d'ailleurs les plus prudents : c'est chez eux que le taux de « méfiance
+        forte » est le plus élevé, signe que l'expertise technique aiguise plutôt qu'elle
+        n'apaise le regard critique sur l'IA.
+      </p>
+    </section>
+
+    <hr class="rule" style="--from: var(--sage); --to: var(--violet);">
+
+    <!-- ---------- 05 · MÉTIERS ---------- -->
+    <section class="pillar" id="metiers" style="--accent: var(--violet); --accent-dim: var(--violet-dim);">
+      <p class="pillar__no">05 — Métiers</p>
+      <div class="pillar__bar" aria-hidden="true"></div>
+      <h2>Les nouveaux métiers et compétences créés par l'IA</h2>
+      <p class="pillar__lede">
+        L'IA détruit certaines tâches répétitives, mais elle a surtout fait émerger toute une
+        nouvelle chaîne de métiers autour de la conception, du contrôle et de l'orchestration
+        des systèmes qu'elle alimente.
+      </p>
+
+      <figure class="fig">
+        <p class="fig__title">Postes liés à l'IA créés aux États-Unis (2023–2025)</p>
+        <div class="stack">
+          <span style="width:11.7%;background:var(--violet);">75 k</span>
+          <span style="width:88.3%;background:var(--glow);">564 k</span>
+        </div>
+        <div class="legend">
+          <span><i style="background:var(--violet)" aria-hidden="true"></i>Postes « AI Engineer »</span>
+          <span><i style="background:var(--glow)" aria-hidden="true"></i>Autres rôles liés à l'IA</span>
+        </div>
+        <figcaption class="fig__note">
+          Total 2023–2025 : 639 000 offres ajoutées aux États-Unis. Source : LinkedIn, via
+          CBS News, avril 2026. En 2025 seul, les offres « AI Engineer » ont progressé de 143 %
+          sur un an (LinkedIn, Jobs on the Rise 2026).
+        </figcaption>
+      </figure>
+
+      <p>
+        Le rapport LinkedIn « Jobs on the Rise 2026 », publié début 2026, confirme et amplifie la
+        tendance : « AI Engineer » reste le titre de poste dont la croissance est la plus rapide
+        aux États-Unis, avec des offres en hausse de 143 % sur la seule année 2025, et
+        <strong>quatre des cinq postes qui progressent le plus vite</strong> sur la plateforme
+        sont désormais liés à l'IA. Plus largement, selon une analyse de Robert Half publiée en
+        2026, l'ensemble des offres IA/machine learning a bondi de 163 % entre 2024 et 2025, pour
+        atteindre environ 49 200 postes ouverts aux États-Unis. Le World Economic Forum va dans
+        le même sens : selon les données LinkedIn qu'il a publiées en janvier 2026, l'IA a déjà
+        généré plus de 1,3 million de nouveaux postes dans le monde — ingénieurs IA,
+        « forward-deployed engineers », annotateurs de données — auxquels s'ajoutent plus de
+        600 000 emplois créés dans les centres de données dédiés à l'IA.
+      </p>
+
+      <p>
+        Ce tableau mérite toutefois d'être nuancé. Le même rapport LinkedIn note que plus d'un
+        million de licenciements ont eu lieu en 2025 aux États-Unis, que 52 % des actifs
+        déclarent être en recherche d'emploi début 2026, et que l'embauche de profils débutants a
+        reculé de 6 % entre décembre 2025 et février 2026 par rapport à l'année précédente. Une
+        étude de la Harvard Business School va dans le même sens : les emplois portant sur des
+        tâches structurées et répétitives auraient reculé de 13 % depuis le lancement de ChatGPT
+        fin 2022. L'IA ne se contente donc pas de créer des postes ; elle en redistribue aussi la
+        nature, au détriment des tâches les plus standardisées et au profit des profils capables
+        de superviser, corriger et orchestrer les systèmes qu'elle alimente.
+      </p>
+
+      <div class="roles">
+        <div class="role">
+          <b>Ingénieur IA (AI Engineer)</b>
+          <span>N° 1 des rôles en plus forte croissance · +143 % en 2025</span>
+          <p>Conçoit et met en production les systèmes qui exploitent des modèles de langage : intégration, fiabilisation, mise à l'échelle.</p>
+        </div>
+        <div class="role">
+          <b>Prompt engineer</b>
+          <span>45 000 € – 65 000 € (France)</span>
+          <p>Conçoit, teste et affine les instructions données aux modèles pour obtenir des résultats fiables et exploitables.</p>
+        </div>
+        <div class="role">
+          <b>Directeur IA (Chief AI Officer)</b>
+          <span>120 000 € – 200 000 € (France)</span>
+          <p>Pilote la stratégie IA de l'entreprise, arbitre entre gains de productivité et risques de dépendance ou de conformité.</p>
+        </div>
+        <div class="role">
+          <b>Compétence transversale : « IA literacy »</b>
+          <span>1<sup>re</sup> compétence recherchée par les recruteurs</span>
+          <p>Devant la communication et le leadership, savoir utiliser, valider et encadrer des outils IA devient une compétence de base dans la plupart des métiers techniques.</p>
+        </div>
+      </div>
+
+      <p>
+        En France, la demande pour les postes liés à l'IA a progressé de 245 % en 2025. Mais
+        au-delà des intitulés de poste entièrement nouveaux, c'est le contenu même du métier de
+        développeur qui se redéfinit : savoir écrire un prompt précis, relire et valider une
+        génération de code, orchestrer plusieurs agents sur une même base de code, et surtout
+        garder une compréhension assez fine du système pour repérer quand l'IA se trompe — cette
+        dernière compétence redevenant, paradoxalement, plus précieuse à mesure que l'IA écrit
+        davantage de code elle-même.
+      </p>
+    </section>
+
+    <!-- ---------- CONCLUSION ---------- -->
+    <section class="wrapup">
+      <h2>En résumé</h2>
+      <p>
+        Trois ans après ChatGPT, l'image d'une IA qui remplacerait purement et simplement le
+        développeur ne colle pas aux données. Ce qui s'est réellement passé est plus subtil : le
+        travail s'est déplacé de l'écriture vers la validation, la vitesse a progressé mais de
+        façon inégale et parfois trompeuse, la dépendance à quelques fournisseurs est devenue un
+        risque opérationnel concret et documenté, et un nouvel écosystème de métiers s'est
+        constitué autour du pilotage de ces outils plutôt que de leur simple usage. Le fil
+        conducteur de toutes ces études, du rapport DORA à l'essai contrôlé de METR, est le
+        même : l'IA amplifie ce qui existe déjà — les bonnes pratiques comme les failles —
+        plutôt qu'elle ne les corrige toute seule.
+      </p>
+    </section>
+
+    <!-- ---------- SOURCES ---------- -->
+    <section class="srcs">
+      <h2>Sources</h2>
+      <ol>
+        <li><a href="https://dora.dev/dora-report-2025/" target="_blank" rel="noopener">DORA — State of AI-assisted Software Development 2025</a></li>
+        <li><a href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report" target="_blank" rel="noopener">Google Cloud Blog — Annonce du rapport DORA 2025</a></li>
+        <li><a href="https://www.splunk.com/en_us/blog/learn/state-of-devops.html" target="_blank" rel="noopener">Splunk — Synthèse du rapport DORA 2025</a></li>
+        <li><a href="https://survey.stackoverflow.co/2025/ai" target="_blank" rel="noopener">Stack Overflow — Developer Survey 2025, section IA</a></li>
+        <li><a href="https://stackoverflow.co/company/press/archive/stack-overflow-2025-developer-survey/" target="_blank" rel="noopener">Stack Overflow — Communiqué du Developer Survey 2025</a></li>
+        <li><a href="https://arxiv.org/abs/2507.09089" target="_blank" rel="noopener">METR — Measuring the Impact of Early-2025 AI on Developer Productivity</a></li>
+        <li><a href="https://arxiv.org/abs/2302.06590" target="_blank" rel="noopener">Peng et al. — The Impact of AI on Developer Productivity: Evidence from GitHub Copilot</a></li>
+        <li><a href="https://arxiv.org/pdf/2502.13199" target="_blank" rel="noopener">The Role of GitHub Copilot on Software Development (incl. étude ANZ Bank)</a></li>
+        <li><a href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/" target="_blank" rel="noopener">GitHub Research — Impact de Copilot sur la productivité</a></li>
+        <li><a href="https://www.harness.io/blog/the-impact-of-github-copilot-on-developer-productivity-a-case-study" target="_blank" rel="noopener">Harness — Étude de cas Copilot</a></li>
+        <li><a href="https://www.cbsnews.com/news/artificial-intelligence-entry-level-role-linkedin-study/" target="_blank" rel="noopener">CBS News — Données LinkedIn sur les métiers de l'IA</a></li>
+        <li><a href="https://www.orange.com/fr/nos-actualites/metiers-de-lia-en-2026-competences-formations-debouches" target="_blank" rel="noopener">Orange — Métiers de l'IA en 2026 (France)</a></li>
+        <li><a href="https://almcorp.com/fr/blog/chatgpt-outage-guide-december-2025/" target="_blank" rel="noopener">ALM Corp — Historique et analyse des pannes ChatGPT</a></li>
+        <li><a href="https://www.storyboard18.com/how-it-works/biggest-ai-outages-since-2024-chatgpt-claude-and-cloudflare-disruptions-that-shook-the-industry-91169.htm" target="_blank" rel="noopener">Storyboard18 — Chronologie des pannes IA depuis 2024</a></li>
+        <li><a href="https://ayinedjimi-consultants.fr/news/ia-panne-chatgpt-claude-gemini-20-avril" target="_blank" rel="noopener">Ayi Nedjimi Consultants — Panne simultanée d'avril 2026</a></li>
+        <li><a href="https://metr.org/blog/2026-02-24-uplift-update/" target="_blank" rel="noopener">METR — Mise à jour sur l'étude de productivité, février 2026</a></li>
+        <li><a href="https://getdx.com/blog/ai-impact-report-q1-2026/" target="_blank" rel="noopener">DX — AI Impact Report, T1 2026</a></li>
+        <li><a href="https://getdx.com/report/ai-assisted-engineering-q4-impact-report/" target="_blank" rel="noopener">DX — AI-Assisted Engineering Impact Report, T4 2025</a></li>
+        <li><a href="https://www.herohunt.ai/blog/fastest-growing-ai-roles-in-2026-data-and-rankings/" target="_blank" rel="noopener">LinkedIn Jobs on the Rise 2026 — synthèse HeroHunt</a></li>
+        <li><a href="https://www.weforum.org/stories/2026/01/ai-has-already-added-1-3-million-new-jobs-according-to-linkedin-data/" target="_blank" rel="noopener">World Economic Forum — Données LinkedIn sur l'emploi IA, janvier 2026</a></li>
+        <li><a href="https://tekninjas.com/blogs/emerging-ai-roles-2026-where-the-hiring-is/" target="_blank" rel="noopener">Tek Ninjas — Rôles IA émergents 2026 (incl. données Robert Half)</a></li>
+      </ol>
+    </section>
+
+  </div>
+</div>
+</article>
+
+<!-- ===================== SUITE ===================== -->
+<section class="band band--alt">
+  <div class="shell contact">
+    <h2 class="contact__title">Envie d'en <em>discuter ?</em></h2>
+    <p class="contact__note">
+      Android Lead à Paris, ouvert aux échanges sur le mobile, l'architecture
+      et l'outillage IA des équipes techniques.
+    </p>
+    <div class="contact__cta">
+      <a class="btn btn--hot" id="mail" href="#" data-u="hichemlaroussi" data-d="gmail.com">Écrire un email</a>
+      <a class="btn btn--ghost" href="./">Tous les articles</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot__in">
+    <span>© <span id="year">2026</span> Hichem Laroussi</span>
+    <span>Paris, France</span>
+    <span class="foot__sep"><a href="#top">Retour en haut ↑</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
