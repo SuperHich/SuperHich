@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google's War on Partial Wake Locks — Hichem Laroussi</title>
+<meta name="description" content="Google now polices battery optimization on the Play Store. How the partial wake lock threshold works, how Android Vitals turns it into a ranking penalty, and what a battery warning costs a product.">
+<meta name="author" content="Hichem Laroussi">
+<meta name="theme-color" content="#131015">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Dive: Google's War on Partial Wake Locks">
+<meta property="og:description" content="Battery optimization moved from a technical nice-to-have to a top-tier business risk. Here is the mechanism behind the Play Store battery warning.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="../assets/fonts/roboto-flex.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/roboto-mono.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/article.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131015'/><text x='16' y='23' font-family='sans-serif' font-size='17' font-weight='bold' fill='%23FF6A3D' text-anchor='middle'>H</text></svg>">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="aura" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="shell nav__in">
+    <a class="nav__logo" href="../index.html#top">hichem<em>.dev</em></a>
+    <nav class="nav__links" lang="fr" aria-label="Navigation principale">
+      <a href="../index.html#parcours">Parcours</a>
+      <a href="../index.html#apps">Applications</a>
+      <a href="../index.html#labo">Labo</a>
+      <a href="./" class="is-active">Articles</a>
+    </nav>
+    <a class="btn btn--hot" href="../index.html#contact" lang="fr">Me contacter</a>
+  </div>
+</header>
+
+<main id="main">
+
+<article>
+<header class="art-hero" id="top">
+  <div class="shell">
+    <a class="art-back" href="./">← All articles</a>
+
+    <p class="art-eyebrow">Deep dive · Android</p>
+    <h1 class="art-title">Google's war on <em>partial wake locks</em></h1>
+    <p class="art-lede">
+      Google is no longer just suggesting battery optimization; it is actively policing it.
+      By introducing real-time warnings on the Play Store, the Android team is using user
+      behavior as a lever to force developers into compliance.
+    </p>
+
+    <p class="art-meta">
+      <span>Hichem Laroussi</span><i aria-hidden="true"></i>
+      <time datetime="2026-03-09">March 9, 2026</time><i aria-hidden="true"></i>
+      <span>5 min read</span>
+    </p>
+
+    <!-- Visuel d'ouverture : la fiche Play Store telle que la voit l'utilisateur -->
+    <figure class="fig fig--hero">
+      <img class="fig__img" src="../assets/img/articles/image-deep-dive.jpg"
+           alt="A Play Store listing on a phone, showing an amber warning that reads “This app may use more battery than expected in the background” just under the install button."
+           width="1200" height="676">
+      <figcaption class="fig__note">
+        The warning sits between the install button and the description — exactly where
+        conversion happens.
+      </figcaption>
+    </figure>
+
+    <div class="strip">
+      <div class="strip__cell">
+        <b class="strip__num">2 h</b>
+        <span class="strip__lbl">of cumulative partial wake lock with the screen off flags a session as excessive</span>
+        <span class="strip__src">Android Vitals threshold</span>
+      </div>
+      <div class="strip__cell">
+        <b class="strip__num">5 %</b>
+        <span class="strip__lbl">of battery sessions above that bar is enough to trigger the store warning</span>
+        <span class="strip__src">Android Vitals threshold</span>
+      </div>
+      <div class="strip__cell">
+        <b class="strip__num">Bottom 25 %</b>
+        <span class="strip__lbl">of apps on performance metrics are already deprioritized in search</span>
+        <span class="strip__src">Play Store ranking</span>
+      </div>
+    </div>
+
+    <nav class="toc" aria-label="Table of contents">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#trigger">The technical trigger</a></li>
+        <li><a href="#penalty">The “vital” penalty system</a></li>
+        <li><a href="#business">Business impact</a></li>
+      </ol>
+    </nav>
+  </div>
+</header>
+
+<div class="art">
+  <div class="shell">
+
+    <!-- ---------- 01 · TRIGGER ---------- -->
+    <section class="pillar" id="trigger" style="--accent: var(--glow); --accent-dim: var(--amber-dim);">
+      <p class="pillar__no">01 — The trigger</p>
+      <div class="pillar__bar" aria-hidden="true"></div>
+      <h2>The technical trigger: partial wake locks</h2>
+      <p class="pillar__lede">
+        The core of this issue lies in partial wake locks. These are API calls that allow an
+        app to keep the CPU running while the screen is off.
+      </p>
+
+      <p>
+        <strong>The problem.</strong> Poorly coded apps often “forget” to release these
+        locks, causing “stuck” background processes. Nothing is visibly wrong: the screen
+        is off, the user is asleep, and the CPU keeps running on behalf of an app that has
+        nothing left to do.
+      </p>
+
+      <p>
+        <strong>The new threshold.</strong> Google defines “excessive” as a partial wake
+        lock held for more than one hour — or a cumulative two hours in some reports — while
+        the screen is off, affecting at least <strong>5 % of an app's battery sessions</strong>.
+        Below that bar, nothing happens. Above it, the store listing changes.
+      </p>
+
+      <figure class="fig">
+        <p class="fig__title">Diagram — daily battery consumption</p>
+        <img class="fig__img" src="../assets/img/articles/diagram-deep-dive.jpg"
+             alt="Three charts: cumulative background activity, where three optimized apps stay under the two-hour threshold while a non-optimized app reaches nearly three hours; a radar comparing an optimized and a non-optimized app across foreground use, background fetch, push notifications, location services and wake locks; and a donut of a typical day's discharge — system services 35 %, display 25 %, non-optimized app 25 %, essential apps 15 %."
+             width="1280" height="698" loading="lazy">
+        <figcaption class="fig__note">
+          A single leaking app can account for as much of a day's discharge as the screen
+          itself — which is why the metric is measured per session rather than per install.
+        </figcaption>
+      </figure>
+    </section>
+
+    <hr class="rule" style="--from: var(--glow); --to: var(--hot);">
+
+    <!-- ---------- 02 · PENALTY ---------- -->
+    <section class="pillar" id="penalty" style="--accent: var(--hot); --accent-dim: var(--rust-dim);">
+      <p class="pillar__no">02 — The penalty</p>
+      <div class="pillar__bar" aria-hidden="true"></div>
+      <h2>The “vital” penalty system</h2>
+      <p class="pillar__lede">
+        This isn't just a UI warning; it's integrated into Android Vitals.
+      </p>
+
+      <p>
+        <strong>Search ranking.</strong> Apps that fall into the bottom 25 % of performance
+        metrics — including battery and crash rates — are already deprioritized in search
+        results. The battery metric doesn't create that mechanism; it feeds it.
+      </p>
+
+      <p>
+        <strong>The “shame” badge.</strong> The new warning acts as a high-friction barrier
+        at the point of conversion. For a developer, a “battery drain” warning is the
+        equivalent of a “security risk” popup — it kills the install rate instantly.
+      </p>
+
+      <aside class="callout">
+        <b class="callout__tag">What changes for the team</b>
+        A crash is measured after the install; this warning is measured
+        <strong>before</strong> it. Every other quality metric costs you retention — this one
+        costs you acquisition, on a surface no amount of in-app work can repair.
+      </aside>
+    </section>
+
+    <hr class="rule" style="--from: var(--hot); --to: var(--violet);">
+
+    <!-- ---------- 03 · BUSINESS ---------- -->
+    <section class="pillar" id="business" style="--accent: var(--violet); --accent-dim: var(--violet-dim);">
+      <p class="pillar__no">03 — Business impact</p>
+      <div class="pillar__bar" aria-hidden="true"></div>
+      <h2>Business impact: the cost of negligence</h2>
+      <p class="pillar__lede">
+        For product managers and stakeholders, this update shifts battery optimization from a
+        “nice-to-have” technical debt item to a top-tier business risk.
+      </p>
+
+      <div class="duo">
+        <div class="duo__box duo__box--down">
+          <h3>Higher customer acquisition cost</h3>
+          <ul>
+            <li>If your store page warns users about battery life, your <strong>conversion rate will plummet</strong>.</li>
+            <li>Every ad dollar spent becomes less effective: the traffic still arrives, it just stops converting.</li>
+            <li>The warning applies to the listing, so paid and organic acquisition degrade at the same time.</li>
+          </ul>
+        </div>
+        <div class="duo__box duo__box--down">
+          <h3>Brand trust</h3>
+          <ul>
+            <li>In a competitive market — fitness trackers, social media — being the <strong>“battery killer” app</strong> leads to rapid uninstalls.</li>
+            <li>Negative reviews follow the uninstalls, and reviews outlive the fix that removed the warning.</li>
+            <li>Users rarely blame a wake lock; they blame the brand attached to it.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrapup">
+      <h2>The takeaway</h2>
+      <p>
+        Battery behaviour used to be an engineering detail argued about inside the team. It is
+        now a public property of the product, printed on the one page every prospective user
+        reads. The technical work hasn't changed — release your locks, batch your background
+        work, prefer the scheduler over the CPU — but the person who pays for skipping it has:
+        it's no longer the developer at the next code review, it's the business at the next
+        acquisition report.
+      </p>
+    </section>
+
+    <section class="srcs">
+      <h2>Source</h2>
+      <ol>
+        <li><a href="https://www.pcmag.com/news/google-play-store-adds-warnings-about-apps-that-could-drain-your-battery" target="_blank" rel="noopener">PCMag — Google Play Store adds warnings about apps that could drain your battery</a></li>
+      </ol>
+    </section>
+
+  </div>
+</div>
+</article>
+
+<section class="band band--alt">
+  <div class="shell contact">
+    <h2 class="contact__title">Shipping on <em>Android?</em></h2>
+    <p class="contact__note">
+      Android Lead in Paris, happy to talk battery budgets, background work
+      and everything that shows up in Android Vitals.
+    </p>
+    <div class="contact__cta">
+      <a class="btn btn--hot" id="mail" href="#" data-u="hichemlaroussi" data-d="gmail.com">Send an email</a>
+      <a class="btn btn--ghost" href="./">All articles</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot__in">
+    <span>© <span id="year">2026</span> Hichem Laroussi</span>
+    <span>Paris, France</span>
+    <span class="foot__sep"><a href="#top">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

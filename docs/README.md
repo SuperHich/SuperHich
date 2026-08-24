@@ -65,6 +65,44 @@ Pour publier un nouvel article :
 3. Ajouter une ligne `.post` dans `articles/index.html`, et, si l'article mérite
    la page d'accueil, la même ligne dans la section `#articles` de `index.html`
    (les chemins y sont relatifs à la racine : `articles/mon-article.html`).
+   Les listes sont antichronologiques : le plus récent en premier.
+
+Un article rédigé dans une autre langue que le français porte le `lang` qui
+convient sur `<html>`, un `hreflang` sur son lien de liste, et un repère
+`<span class="post__flag">EN</span>` dans son titre de liste. Le résumé de la
+liste, lui, reste en français : c'est la langue du site.
+
+## Les images d'article
+
+Les visuels vivent dans `assets/img/articles/`, sur le même principe que le
+portrait : le PNG d'origine est conservé comme source, et c'est un JPEG
+optimisé qui est servi.
+
+```
+image-deep-dive.png    source, 1279×720, 1,1 Mo
+image-deep-dive.jpg    affiché, 1200 px de large, 95 Ko
+```
+
+Pour régénérer un JPEG après avoir remplacé une source :
+
+```python
+from PIL import Image
+im = Image.open("mon-image.png").convert("RGB")
+im = im.resize((1200, round(im.height * 1200 / im.width)), Image.LANCZOS)
+im.save("mon-image.jpg", "JPEG", quality=86, optimize=True, progressive=True)
+```
+
+Dans la page, l'image se place dans une figure, avec ses dimensions pour
+éviter le décalage de mise en page au chargement, et `loading="lazy"` dès
+qu'elle est sous la ligne de flottaison :
+
+```html
+<figure class="fig">
+  <img class="fig__img" src="../assets/img/articles/mon-image.jpg"
+       alt="…" width="1200" height="676" loading="lazy">
+  <figcaption class="fig__note">…</figcaption>
+</figure>
+```
 
 Chaque section d'article porte sa couleur d'accent via une variable en ligne :
 
